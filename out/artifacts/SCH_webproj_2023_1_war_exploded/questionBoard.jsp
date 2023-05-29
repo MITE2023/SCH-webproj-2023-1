@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="post.Post" %>
+<%@ page import="post.PostDAO" %>
+<%@ page import="java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +17,24 @@
     <link href="CSS/Mainpage.css" rel="stylesheet">
 </head>
 <body style="background-color: #efefef;">
+
+<%
+    String userID = null;
+    if (session.getAttribute("userID") != null) {
+        userID = (String) session.getAttribute("userID");
+    }
+
+    int pageNumber = 1;
+    if (request.getParameter("pageNumber") != null) {
+        pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+    }
+%>
+
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <img class="logo" src="IMG/nav_logo.jpg" height="40">
+        <a href="index.jsp">
+            <img class="logo" src="IMG/nav_logo.jpg" height="40">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,26 +66,43 @@
         <div class="row align-items-center">
             <p style="background-color: #dee2e6; font-size: 20px;">질문 게시판</p>
             <table class="table table-striped ">
+                <thead>
+                <%-- TODO : 표 스타일 변경 --%>
                 <tr class="text-center">
                     <th>번호</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>등록일</th>
-                    <th>조회</th>
                 </tr>
+                </thead>
+
+                <tbody>
                 <tr>
-                    <td class="col-sm-1">1</td>
-                    <td><a href="#">안녕하세요. 질문있어요.</a></td>
-                    <td>강재영 짱짱맨</td>
-                    <td>2023.05.29</td>
-                    <td class="col-sm-1">10</td>
+                        <%
+                            PostDAO postDAO = new PostDAO();
+                            ArrayList<Post> list = postDAO.getList(pageNumber);
+                            for (int i = 0; i < list.size(); i++) {
+                        %>
+                <tr>
+                    <td><%=list.get(i).getPost_no()%></td>
+                    <td><%=list.get(i).getPost_title()%></td> <!-- TODO : 제목 링크 연결 -->
+                    <td><%=list.get(i).getUser_no()%></td>
+                    <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %></td>
                 </tr>
+                <%
+                    }
+                %>
+                </tr>
+                </tbody>
             </table>
+            <!-- TODO : 페이지 넘버 -->
         </div>
         <div class="row align-items-center">
             <div class="row">
                 <div class="col" id="Writing">
-                    <button class="btn btn-outline-success w-25" type="button" style="float: left;">글쓰기</button>
+                    <button class="btn btn-outline-success w-25" type="button" onclick="location.href='write.jsp'"
+                            style="float: left;">글쓰기
+                    </button>
                 </div>
                 <div class="col">
                 </div>

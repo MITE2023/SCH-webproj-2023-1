@@ -84,6 +84,7 @@ public class PostDAO {
                 post.setUser_no(rs.getInt(7));
                 post.setComment_no(8);
                 post.setPost_date(rs.getString(9));
+                list.add(post);
             }
         } catch (Exception e) {
             e.printStackTrace();
