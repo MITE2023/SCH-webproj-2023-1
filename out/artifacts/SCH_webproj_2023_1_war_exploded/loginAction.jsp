@@ -14,9 +14,22 @@
 </head>
 <body>
 <% // 자바 코드 삽입
+    String userID = null;
+    if (session.getAttribute("userID") != null) {
+        userID = (String) session.getAttribute("userID");
+    }
+    if (userID != null) {
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('이미 로그인되었습니다.')");
+        script.println("location.href = 'index.jsp'");
+        script.println("</script>");
+    }
     UserDAO userDAO = new UserDAO();
     int result = userDAO.login(user.getUserID(), user.getUserPW());
     if (result == 1) {
+        session.setAttribute("userID", user.getUserID());
+        session.setAttribute("userNickname", user.getUserNickname());
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("location.href = 'index.jsp'");

@@ -16,6 +16,17 @@
 </head>
 <body>
 <%
+    String userID = null;
+    if (session.getAttribute("usrID") != null) {
+        userID = (String) session.getAttribute("userID");
+    }
+    if (userID != null) {
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('이미 로그인되었습니다.')");
+        script.println("location.href = 'index.jsp'");
+        script.println("</script>");
+    }
     // -1 : DB , -2 : ID, -3 : PW, -4 : Nickname
     if (user.getUserID() == null || user.getUserPW() == null || user.getUserPW2() == null
             || user.getUserNickname() == null) {
@@ -59,6 +70,8 @@
 
         }
         else { // 회원가입 성공시
+            session.setAttribute("userID", user.getUserID());
+            session.setAttribute("userNickname", user.getUserNickname());
             PrintWriter script = response.getWriter();
             script.println("<script>");
             script.println("location.href = 'index.jsp'");    // 메인 페이지로 이동

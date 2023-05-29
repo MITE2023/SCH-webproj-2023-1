@@ -27,10 +27,10 @@
       </ul>
       <ul class="navbar-nav" id="check_login">
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a> <!-- 로그인 되어 있을때만 존재 -->
+          <a class="nav-link" href="login.jsp">Login</a> <!-- 로그인 되어있지 않을 때 존재 -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign up</a> <!-- 로그인 되어 있을때만 존재 -->
+          <a class="nav-link" href="signup.jsp">Sign up</a> <!-- 로그인 되어있지 않을 때 존재 -->
         </li>
       </ul>
     </div>
