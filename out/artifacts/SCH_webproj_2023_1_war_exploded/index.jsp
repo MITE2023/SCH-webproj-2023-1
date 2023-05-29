@@ -12,7 +12,7 @@
 <body style="background-color: #efefef;">
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">SmartAlgo</a>
+    <a class="navbar-brand" href="index.jsp">SmartAlgo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,7 @@
         <%
           if(session.getAttribute("userID") != null) {
             String userID = (String) session.getAttribute("userID");
-            out.println("<li class='nav-item'> <span>");
+            out.println("<li class='nav-item' style='line-height: 255%;'> <span>");
             out.println(userID + "님 환영합니다.");
             out.println("</span></li>");
 

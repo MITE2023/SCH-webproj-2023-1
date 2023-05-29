@@ -21,7 +21,7 @@
         <%
           if(session.getAttribute("userID") != null) {
             String userID = (String) session.getAttribute("userID");
-            out.println("<li class='nav-item'> <span>");
+            out.println("<li class='nav-item' style='line-height: 255%;'> <span>");
             out.println(userID + "님 환영합니다.");
             out.println("</span></li>");
 
