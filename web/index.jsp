@@ -80,7 +80,7 @@
       <div class="row align-items-center">
         <div class="row">
           <div class="col">
-            <p style="background-color: #e3f2fd;">질문 게시판</p>
+            <a href="questionBoard.jsp" style="background-color: #e3f2fd;">질문 게시판</a>
             <table class="table table-striped ">
               <tr class="text-center">
                 <th>번호</th>
@@ -99,7 +99,7 @@
             </table>
           </div>
           <div class="col">
-            <p style="background-color: #e3f2fd;">트렌드 IT 게시판</p>
+            <a href="trendBoard.jsp" style="background-color: #e3f2fd;">트렌드 IT 게시판</a>
             <table class="table table-striped ">
               <tr class="text-center">
                 <th>번호</th>
