@@ -16,22 +16,31 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="view_id">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">MainPage</a>
-        </li> -->
-        <li class="login_confirm invisible">
-          <a class="nav-link" type="text">user_id</a> <!-- 로그인 되어 있으면 아이디 표시, 로그아웃 상태일때는 표시 없고 로그인 버튼 따로 있음 -->
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav" id="check_login">
+        <%
+          if(session.getAttribute("userID") != null) {
+            String userID = (String) session.getAttribute("userID");
+            out.println("<li class='nav-item'> <span>");
+            out.println(userID + "님 환영합니다.");
+            out.println("</span></li>");
+
+            out.println("<li class='nav-item'>");
+            out.println("<a class='nav-link' href='logoutAction.jsp'>Logout</a></li>");
+        %>
+
+        <%
+          } else {
+        %>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a> <!-- 로그인 되어 있을때만 존재 -->
+          <a class="nav-link" href="login.jsp">Login</a> <!-- 로그인 되어있지 않을 때 존재 -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign up</a> <!-- 로그인 되어 있을때만 존재 -->
+          <a class="nav-link" href="signup.jsp">Sign up</a> <!-- 로그인 되어있지 않을 때 존재 -->
         </li>
+        <%
+          }
+        %>
       </ul>
     </div>
   </div>

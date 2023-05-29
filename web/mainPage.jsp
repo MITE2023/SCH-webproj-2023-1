@@ -16,15 +16,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="view_id">
-                <!-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">MainPage</a>
-                </li> -->
-                <li class="login_confirm invisible">
-                    <a class="nav-link" type="text">user_id</a> <!-- 로그인 되어 있으면 아이디 표시, 로그아웃 상태일때는 표시 없고 로그인 버튼 따로 있음 -->
-                </li>
-            </ul>
             <ul class="navbar-nav" id="check_login">
+                <%
+                    if(session.getAttribute("userID") != null) {
+                        String userID = (String)session.getAttribute("userID");
+                        out.println("<li class='nav-item'>");
+                        out.println("<class='text'>");
+                        out.println(userID);
+                        out.println("</a>");
+                    }
+                %>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Login</a> <!-- 로그인 되어 있을때만 존재 -->
                 </li>
@@ -35,6 +36,7 @@
         </div>
     </div>
 </nav>
+
 <section>
     <div class="container text-center">
         <div class="row align-items-start">
