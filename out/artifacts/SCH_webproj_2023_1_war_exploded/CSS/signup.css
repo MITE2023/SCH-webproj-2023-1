@@ -1,0 +1,20 @@
+.bg-light{
+    height: 1053px;
+    padding-top: 55px;
+    padding-bottom: 75px;
+}
+.container.py-4{
+    margin: 0 auto;
+    width: 503px;
+}
+.bir_yy,.bir_mm,.bir_dd{
+    width: 160px;
+    display: table-cell;
+
+}
+.bir_mm+.bir_dd,.bir_yy_.bir_mm{
+    padding-left: 10px;
+}
+.d-grid.gap-2{
+    padding-top: 30px;
+}
