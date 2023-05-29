@@ -1,0 +1,15 @@
+/* thead{
+    border: 1px solid #e3f2fd;
+} */
+#border_style{
+    border: 1px solid #42a0e2;
+}
+.list-group-item{
+    background-color: #efefef;
+}
+.col-md-10 col-md-offset-3{
+    align-content: center;
+}
+.container text-center{
+    align-items: center;
+}
