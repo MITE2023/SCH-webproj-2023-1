@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page import ="java.io.PrintWriter" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
   <title>Writing</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-  <link href="CSS/mainPage.css" rel="stylesheet">
+  <link href="CSS/Mainpage.css" rel="stylesheet">
 
 </head>
 <body style="background-color: #efefef;">
@@ -19,16 +20,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="view_id">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">MainPage</a>
-        </li> -->
-        <li class="login_confirm">
-          <a class="nav-link" type="text">user_id</a> <!-- 로그인 되어 있으면 아이디 표시, 로그아웃 상태일때는 표시 없고 로그인 버튼 따로 있음 -->
-        </li>
-
-      </ul>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav" id="check_login">
         <li class="nav-item">
           <a class="nav-link" href="#">Logout</a> <!-- 로그인 되어 있을때만 존재 -->
@@ -50,32 +42,62 @@
         </div>
       </div>
     </div>
-
-    <button type="submit" class="btn btn-secondary">제출하기</button>
     <div class="row align-items-center">
-      <form action="writerAction" method="post">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            게시판 선택
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="질문 게시판" href="#">Action</a></li>
-            <li><a class="트렌드 IT" href="#">Another action</a></li>
-          </ul>
+      <div class="col">
+        <button class="btn btn-outline-success" type="submit" onClick="location.href='writeAction.jsp'" style="float: right;">작성완료</button>
+      </div>
+      <br>
+      <br>
+      <form action="writeAction.jsp" method="post">
+        <div class="col">
+          <div class="choose_board">
+                                <span class="ps_box focus">
+                                    <select class="form-select" id="select_board">
+                                        <option value="" selected disabled hidden>게시판 선택</option>
+                                        <option>질문 게시판</option>
+                                        <option>트렌드 IT</option>
+                                    </select>
+                                </span>
+          </div>
         </div>
-        <input type="text" name="bdTitle" class="form-control mt-4 mb-2"
+        <input type="text" name="post_title" class="form-control mt-4 mb-2" id="post_title"
                placeholder="제목을 입력해주세요." required
         >
         <div class="form-group">
-                        <textarea class="form-control" rows="10" name="bdContent"
+                        <textarea class="form-control" rows="7" name="post_code" id="post_code"
+                                  placeholder="코드를 입력해주세요" required
+                        ></textarea>
+        </div>
+        <br>
+        <div class="form-group">
+                        <textarea class="form-control" rows="7" name="post_context" id="post_context"
                                   placeholder="내용을 입력해주세요" required
                         ></textarea>
         </div>
+        <br>
+        <div class="form-group">
+          <div class="upload-box">
+            <div id="drop-file" class="drag-file">
+              <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">
+              <p class="message">이미지 드롭 가능</p>
+              <img src="" alt="미리보기 이미지" class="preview">
+            </div>
+          </div>
+          <label class="file-label" for="chooseFile">이미지 업로드</label>
+          <input class="file" id="post_img"
+                 type="file"
+                 onchange="dropFile.handleFiles(this.files)"
+                 accept="image/png, image/jpeg, image/gif"
+          >
+          <br>
+          <br>
+        </div>
+        <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
       </form>
     </div>
   </div>
 </section>
-<script src="Trend_IT.js"></script>
+<script src="JS/trendIT.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>

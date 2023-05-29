@@ -50,6 +50,7 @@ public class PostDAO {
     }
 
     public int write(Post post, int userNo) { // TODO : user NO 어떻게?
+        System.out.println(post.getPost_title());
         String SQL = "INSERT INTO post (post_category, post_title, post_code, post_context, user_no, post_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try {
@@ -60,6 +61,7 @@ public class PostDAO {
             pstmt.setString(4, post.getPost_context());
             pstmt.setInt(5, userNo);
             pstmt.setString(6, getDate());
+            return pstmt.executeUpdate(); // TODO : 230530;1225; 업로드까지 구현
         } catch (Exception e) {
             e.printStackTrace();
         }

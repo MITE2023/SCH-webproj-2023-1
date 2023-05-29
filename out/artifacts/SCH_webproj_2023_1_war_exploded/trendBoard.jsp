@@ -42,7 +42,7 @@
     <br>
 
     <div class="row align-items-center">
-      <p style="background-color: #dee2e6; font-size: 20px;">질문 게시판</p>
+      <p style="background-color: #dee2e6; font-size: 20px;">트렌드 게시판</p>
       <table class="table table-striped ">
         <tr class="text-center">
           <th>번호</th>
