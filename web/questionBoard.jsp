@@ -98,6 +98,7 @@
                             UserDAO userDAO = new UserDAO();
                             ArrayList<Post> list = postDAO.getList(pageNumber);
                             for (int i = 0; i < list.size(); i++) {
+                                if (list.get(i).getPost_category().equals("2")) continue;
                         %>
                 <tr>
                     <td><%=list.get(i).getPost_no()%></td>
