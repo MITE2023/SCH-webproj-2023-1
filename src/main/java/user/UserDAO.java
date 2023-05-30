@@ -23,6 +23,37 @@ public class UserDAO {
         }
     }
 
+    public String getNicknameByNo(int userNo) {
+        String SQL = "SELECT user_nickname FROM user WHERE user_no = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, userNo);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "null";
+    }
+
+    public int getNoByUserId(String userID) {
+        String SQL = "SELECT user_no FROM user WHERE user_id = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
     public int login(String userID, String userPassword) {
         String SQL = "SELECT user_pw FROM user WHERE user_id = ?";
         try {

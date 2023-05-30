@@ -55,7 +55,7 @@ public class PostDAO {
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, "1"); // TODO : 카테고리 분류
+            pstmt.setString(1, "1"); // TODO : 카테고리 분류 1:질문 / 2:트렌드
             pstmt.setString(2, post.getPost_title());
             pstmt.setString(3, post.getPost_code());
             pstmt.setString(4, post.getPost_context());

@@ -3,6 +3,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.Post" %>
 <%@ page import="post.PostDAO" %>
+<%@ page import="user.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -94,13 +95,15 @@
                 <tr>
                         <%
                             PostDAO postDAO = new PostDAO();
+                            UserDAO userDAO = new UserDAO();
                             ArrayList<Post> list = postDAO.getList(pageNumber);
                             for (int i = 0; i < list.size(); i++) {
                         %>
                 <tr>
                     <td><%=list.get(i).getPost_no()%></td>
                     <td><%=list.get(i).getPost_title()%></td> <!-- TODO : 제목 링크 연결 -->
-                    <td><%=list.get(i).getUser_no()%></td>
+<%--                    <td><%=list.get(i).getUser_no()%></td>--%>
+                    <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%></td>
                     <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %></td>
                 </tr>
                 <%
