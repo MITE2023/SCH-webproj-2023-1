@@ -19,11 +19,6 @@
 <body style="background-color: #efefef;">
 
 <%
-    String userID = null;
-    if (session.getAttribute("userID") != null) {
-        userID = (String) session.getAttribute("userID");
-    }
-
     int pageNumber = 1;
     if (request.getParameter("pageNumber") != null) {
         pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -32,18 +27,37 @@
 
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <a href="index.jsp">
+        <a href ="index.jsp">
             <img class="logo" src="IMG/nav_logo.jpg" height="40">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav" id="check_login">
+                <%
+                    if(session.getAttribute("userID") != null) {
+                        String userID = (String) session.getAttribute("userID");
+                        out.println("<li class='nav-item' style='line-height: 255%;'> <span>");
+                        out.println(userID + "님 환영합니다.");
+                        out.println("</span></li>");
+
+                        out.println("<li class='nav-item'>");
+                        out.println("<a class='nav-link' href='logoutAction.jsp'>Logout</a></li>");
+                %>
+
+                <%
+                } else {
+                %>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a> <!-- 로그인 되어 있을때만 존재 -->
+                    <a class="nav-link" href="login.jsp">Login</a> <!-- 로그인 되어있지 않을 때 존재 -->
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signup.jsp">Sign up</a> <!-- 로그인 되어있지 않을 때 존재 -->
+                </li>
+                <%
+                    }
+                %>
             </ul>
         </div>
     </div>
