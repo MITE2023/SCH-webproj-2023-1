@@ -50,12 +50,11 @@ public class PostDAO {
     }
 
     public int write(Post post, int userNo) { // TODO : user NO 어떻게?
-        System.out.println(post.getPost_title());
         String SQL = "INSERT INTO post (post_category, post_title, post_code, post_context, user_no, post_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, "1"); // TODO : 카테고리 분류 1:질문 / 2:트렌드
+            pstmt.setString(1, post.getPost_category()); // TODO : 카테고리 분류 1:질문 / 2:트렌드
             pstmt.setString(2, post.getPost_title());
             pstmt.setString(3, post.getPost_code());
             pstmt.setString(4, post.getPost_context());

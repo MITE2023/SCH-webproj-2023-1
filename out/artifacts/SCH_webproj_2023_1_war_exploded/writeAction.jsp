@@ -9,6 +9,7 @@
 <jsp:setProperty name="post" property="post_title"/>
 <jsp:setProperty name="post" property="post_context"/>
 <jsp:setProperty name="post" property="post_code"/>
+<jsp:setProperty name="post" property="post_category"/>
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +21,22 @@
 <%
 
     if(session.getAttribute("userID") != null) {
+        // category 설정
+        String category_select = request.getParameter("select_board");
+        if (category_select != null) {
+            if (category_select.equals("질문 게시판"))
+                post.setPost_category("1");
+            else if (category_select.equals("트렌드 IT"))
+                post.setPost_category("2");
+        }
+        else {
+            PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('카테고리를 선택해주세요.')");
+            script.println("history.back()");    // 이전 페이지로 사용자를 보냄
+            script.println("</script>");
+        }
+
         UserDAO userDAO = new UserDAO();
         String userID = (String) session.getAttribute("userID");
         String userNickname = (String) session.getAttribute("userNickname");

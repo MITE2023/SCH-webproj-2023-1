@@ -74,7 +74,7 @@
         <div class="col">
           <div class="choose_board">
                                 <span class="ps_box focus">
-                                    <select class="form-select" id="select_board">
+                                    <select class="form-select" id="select_board" name="select_board">
                                         <option value="" selected disabled hidden>게시판 선택</option>
                                         <option>질문 게시판</option>
                                         <option>트렌드 IT</option>
