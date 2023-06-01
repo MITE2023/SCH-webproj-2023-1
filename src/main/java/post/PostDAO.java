@@ -34,6 +34,7 @@ public class PostDAO {
         return ""; // DB error
     }
 
+
     public int getNext() {
         String SQL = "SELECT post_no FROM post ORDER BY post_no DESC";
         try {
@@ -106,5 +107,30 @@ public class PostDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public Post getPost(int postNo) {
+        String SQL = "SELECT * FROM post WHERE post_no = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, postNo);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Post post = new Post();
+                post.setPost_no(rs.getInt(1));
+                post.setPost_category(rs.getString(2));
+                post.setPost_title(rs.getString(3));
+                post.setPost_code(rs.getString(4));
+                post.setPost_context(rs.getString(5));
+                post.setImg_no(rs.getInt(6));
+                post.setUser_no(rs.getInt(7));
+                post.setComment_no(rs.getInt(8));
+                post.setPost_date(rs.getString(9));
+                return post;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
