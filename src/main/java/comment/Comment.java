@@ -1,15 +1,25 @@
 package comment;
 
 public class Comment {
-    private int comment_id;
-    private String comment_context;
-
-    public int getComment_id() {
-        return comment_id;
+    public String getComment_date() {
+        return comment_date;
     }
 
-    public void setComment_id(int comment_id) {
-        this.comment_id = comment_id;
+    public void setComment_date(String comment_date) {
+        this.comment_date = comment_date;
+    }
+
+    private String comment_date;
+
+    private int comment_no;
+    private String comment_context;
+
+    public int getComment_no() {
+        return comment_no;
+    }
+
+    public void setComment_no(int comment_no) {
+        this.comment_no = comment_no;
     }
 
     public String getComment_context() {
