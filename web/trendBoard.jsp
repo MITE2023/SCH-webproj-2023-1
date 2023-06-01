@@ -102,8 +102,8 @@
                         %>
         <tr>
           <td><%=list.get(i).getPost_no()%></td>
-          <td><%=list.get(i).getPost_title()%></td> <!-- TODO : 제목 링크 연결 -->
-          <%--                    <td><%=list.get(i).getUser_no()%></td>--%>
+          <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>">
+            <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
           <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%></td>
           <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %></td>
         </tr>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.Post" %>
-<%@ page import="user.User %>"
+<%@ page import="user.User" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="user.UserDAO" %>
 
@@ -27,17 +27,21 @@
       <ul class="navbar-nav" id="check_login">
         <%
           int postNo = 0;
-          if (request.getAttribute("postNo") != null) {
+          if (request.getParameter("postNo") != null) {
             postNo = Integer.parseInt(request.getParameter("postNo"));
           }
           else {
             PrintWriter script = response.getWriter();
             script.println("<script>");
-            script.println("alert('모든 문항을 입력해주세요.')");
+            script.println("alert('유효하지 않은 게시글입니다.')");
             script.println("history.back()");    // 이전 페이지로 사용자를 보냄
             script.println("</script>");
           }
           Post post = new PostDAO().getPost(postNo);
+          if (post.getPost_code() == null) {
+            post.setPost_code("");
+            // TODO : 트렌드 IT는 코드란 삭제
+          }
           UserDAO userDAO = new UserDAO();
 
           if (session.getAttribute("userID") != null) {
@@ -114,25 +118,25 @@
                     <th class="active" >작성자</th>
                     <td>
                       <span id="content_id"><%=userDAO.getNicknameByNo(post.getUser_no())
-                              .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>></span>
+                              .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %> </span>
                     </td>
                   </tr>
                   <tr>
                     <th class="active">제목</th>
                     <td>
-                      <span id="content_title"><%=post.getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>>/span>
+                      <span id="content_title"><%=post.getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
                     </td>
                   </tr>
                   <tr>
                     <th class="active" >코드</th>
                     <td>
-                      <span id="content_code"><%=post.getPost_code().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>>%></span>
+                      <span id="content_code"><%= post.getPost_code().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
                     </td>
                   </tr>
                   <tr>
                     <th class="active" >내용</th>
                     <td>
-                      <span id="content_detail"><%=post.getPost_context().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>>%></span>
+                      <span id="content_detail"><%=post.getPost_context().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
                     </td>
                   </tr>
                   <tr>
