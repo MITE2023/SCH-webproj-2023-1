@@ -96,9 +96,15 @@
         </div>
         <div class="col">
           <!-- TODO : 버튼 정렬 -->
-          <button class="btn btn-outline-success w-25" type="submit">목록</button>
-          <button class="btn btn-outline-success w-25" type="submit">수정</button>
+          <%
+            if (session.getAttribute("userID") != null) {
+              String userId = (String) session.getAttribute("userID");
+              if (userId.equals(userDAO.getNicknameByNo(post.getUser_no()))) {
+          %>
+          <form method="post" action="deleteAction.jsp">
           <button class="btn btn-outline-success w-25" type="submit">삭제</button>
+          </form>
+          <% }} %>
         </div>
       </div>
     </div>

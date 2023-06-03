@@ -28,16 +28,17 @@
 
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <a href ="index.jsp">
+        <a href="index.jsp">
             <img class="logo" src="IMG/nav_logo.jpg" height="40">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav" id="check_login">
                 <%
-                    if(session.getAttribute("userID") != null) {
+                    if (session.getAttribute("userID") != null) {
                         String userID = (String) session.getAttribute("userID");
                         out.println("<li class='nav-item' style='line-height: 255%;'> <span>");
                         out.println(userID + "님 환영합니다.");
@@ -96,16 +97,25 @@
                         <%
                             PostDAO postDAO = new PostDAO();
                             UserDAO userDAO = new UserDAO();
-                            ArrayList<Post> list = postDAO.getList(pageNumber);
+                            ArrayList<Post> list;
+                            if(request.getParameter("searchTitle") == null) {
+                                list = postDAO.getList(pageNumber);
+                            }
+
+                            else list = postDAO.getTitleList(pageNumber, request.getParameter("searchTitle"));
                             for (int i = 0; i < list.size(); i++) {
                                 if (list.get(i).getPost_category().equals("2")) continue;
                         %>
                 <tr>
-                    <td><%=list.get(i).getPost_no()%></td>
+                    <td><%=list.get(i).getPost_no()%>
+                    </td>
                     <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
-                        <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
-                    <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%></td>
-                    <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %></td>
+                        <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
+                    </a></td>
+                    <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>
+                    </td>
+                    <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %>
+                    </td>
                 </tr>
                 <%
                     }
@@ -132,8 +142,9 @@
                 <div class="col">
                 </div>
                 <div class="col" id="Search">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" role="search" action="questionBoard.jsp" method="get">
+                        <input class="form-control me-2" name="searchTitle" type="search" placeholder="search"
+                               aria-label="search">
                         <button class="btn btn-outline-success w-25" type="submit">검색</button>
                     </form>
                 </div>
@@ -142,11 +153,12 @@
         <br>
 
         <div class=container style="text-align: center">
-        <%
-            int pages = (int) Math.ceil(postDAO.getNext() / 10) + 1;
-            for (int i = 1; i<= pages; i++) { %>
-                <button type="button" onclick="location.href='questionBoard.jsp?pageNumber=<%=i%>'"><%=i %></button>
-        <%} %>
+            <%
+                int pages = (int) Math.ceil(postDAO.getNext() / 10) + 1;
+                for (int i = 1; i <= pages; i++) { %>
+            <button type="button" onclick="location.href='questionBoard.jsp?pageNumber=<%=i%>'"><%=i %>
+            </button>
+            <%} %>
         </div>
     </div>
 </section>

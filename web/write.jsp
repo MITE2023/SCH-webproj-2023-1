@@ -87,7 +87,7 @@
         >
         <div class="form-group">
                         <textarea class="form-control" rows="7" name="post_code" id="post_code"
-                                  placeholder="코드를 입력해주세요" required
+                                  placeholder="코드를 입력해주세요"
                         ></textarea>
         </div>
         <br>

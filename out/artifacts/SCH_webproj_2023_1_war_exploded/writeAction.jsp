@@ -40,7 +40,7 @@
         UserDAO userDAO = new UserDAO();
         String userID = (String) session.getAttribute("userID");
 
-        if (post.getPost_title() == null || post.getPost_context() == null || post.getPost_code() == null) {
+        if (post.getPost_title() == null || post.getPost_context() == null) {
             PrintWriter script = response.getWriter();
             script.println("<script>");
             script.println("alert('모든 문항을 입력해주세요.')");

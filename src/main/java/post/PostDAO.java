@@ -94,6 +94,34 @@ public class PostDAO {
         return list;
     }
 
+    public ArrayList<Post> getTitleList(int pageNumber, String searchTitle) {
+        String SQL = "SELECT * FROM post WHERE post_no < ? AND post_title " +
+                    "LIKE '%" + searchTitle.trim() + "%' ORDER BY post_no DESC LIMIT 10";
+
+        ArrayList<Post> list = new ArrayList<Post>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setPost_no(rs.getInt(1));
+                post.setPost_category(rs.getString(2));
+                post.setPost_title(rs.getString(3));
+                post.setPost_code(rs.getString(4));
+                post.setPost_context(rs.getString(5));
+                post.setImg_no(rs.getInt(6));
+                post.setUser_no(rs.getInt(7));
+                post.setComment_no(8);
+                post.setPost_date(rs.getString(9));
+                list.add(post);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public boolean nextPage(int pageNumber) {
         String SQL = "SELECT * FROM post WHERE post_no < ?";
         try {
