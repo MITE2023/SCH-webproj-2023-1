@@ -71,27 +71,10 @@
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="row">
-                <div class="col">
-
-                </div>
-                <div class="col" id="Search">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success w-25" type="submit">검색</button>
-                    </form>
-                </div>
-                <div class="col" id="Writing">
-
-                </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br>
 
             <div class="row align-items-center">
-                <a href="questionBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">질문 게시판</a>
+                <a href="questionBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">질문 게시판 최신글</a>
                 <table class="table table-striped ">
                     <thead>
                     <%-- TODO : 표 스타일 변경 --%>
@@ -119,12 +102,16 @@
                                 if (list.get(i).getPost_category().equals("2")) continue;
                         %>
                     <tr>
-                        <td><%=list.get(i).getPost_no()%></td>
+                        <td><%=list.get(i).getPost_no()%>
+                        </td>
                         <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
-                            <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
+                            <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
+                        </a></td>
                         <%--                    <td><%=list.get(i).getUser_no()%></td>--%>
-                        <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%></td>
-                        <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %></td>
+                        <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>
+                        </td>
+                        <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %>
+                        </td>
                     </tr>
                     <%
                         }
@@ -135,62 +122,51 @@
                 <!-- TODO : 페이지 넘버 -->
 
 
-            <div class="row align-items-center">
-                <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판</a>
-                <table class="table table-striped ">
-                    <thead>
-                    <%-- TODO : 표 스타일 변경 --%>
-                    <tr class="text-center">
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>등록일</th>
-                    </tr>
-                    </thead>
+                <div class="row align-items-center">
+                    <a href="trendBoard.jsp"  style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
+                    <table class="table table-striped ">
+                        <thead>
+                        <%-- TODO : 표 스타일 변경 --%>
+                        <tr class="text-center">
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>등록일</th>
+                        </tr>
+                        </thead>
 
-                    <tbody>
-                    <tr>
-                            <%
+                        <tbody>
+                        <tr>
+                                <%
                             PostDAO postDAO2 = new PostDAO();
                             UserDAO userDAO2 = new UserDAO();
                             ArrayList<Post> list2 = postDAO2.getList(pageNumber);
                             for (int i = 0; i < list2.size(); i++) {
                               if(list2.get(i).getPost_category().equals("1")) continue;
                         %>
-                    <tr>
-                        <td><%=list2.get(i).getPost_no()%>
-                        </td>
-                        <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
-                            <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
-                        <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
-                        </td>
-                        <td><%=list2.get(i).getPost_date().substring(0, 11) + list2.get(i).getPost_date().substring(11, 13) + "시" + list2.get(i).getPost_date().substring(14, 16) + "분" %>
-                        </td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- TODO : 페이지 넘버 -->
+                        <tr>
+                            <td><%=list2.get(i).getPost_no()%>
+                            </td>
+                            <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
+                                <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
+                            </a></td>
+                            <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
+                            </td>
+                            <td><%=list2.get(i).getPost_date().substring(0, 11) + list2.get(i).getPost_date().substring(11, 13) + "시" + list2.get(i).getPost_date().substring(14, 16) + "분" %>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- TODO : 페이지 넘버 -->
+                </div>
             </div>
         </div>
     </div>
-    <div class="row align-items-start">
-        <div class="col">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    </div>
+    <br><br>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

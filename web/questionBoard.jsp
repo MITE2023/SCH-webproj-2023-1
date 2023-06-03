@@ -102,7 +102,7 @@
                         %>
                 <tr>
                     <td><%=list.get(i).getPost_no()%></td>
-                    <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>">
+                    <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
                         <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
                     <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%></td>
                     <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %></td>
@@ -117,11 +117,18 @@
         </div>
         <div class="row align-items-center">
             <div class="row">
+                <%
+                    if (session.getAttribute("userID") != null) {
+                %>
                 <div class="col" id="Writing">
                     <button class="btn btn-outline-success w-25" type="button" onclick="location.href='write.jsp'"
                             style="float: left;">글쓰기
                     </button>
                 </div>
+                <% } else {%>
+                <div class="col"></div>
+                <% } %>
+
                 <div class="col">
                 </div>
                 <div class="col" id="Search">
@@ -133,22 +140,13 @@
             </div>
         </div>
         <br>
-        <div class="row align-items-center">
-            <div class="col">
-            </div>
-            <div class="col">
-                <nav aria-label="Page navigation example" style="margin-left: 20%;">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col">
-            </div>
+
+        <div class=container style="text-align: center">
+        <%
+            int pages = (int) Math.ceil(postDAO.getNext() / 10) + 1;
+            for (int i = 1; i<= pages; i++) { %>
+                <button type="button" onclick="location.href='questionBoard.jsp?pageNumber=<%=i%>'"><%=i %></button>
+        <%} %>
         </div>
     </div>
 </section>
