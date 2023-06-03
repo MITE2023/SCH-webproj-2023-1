@@ -72,11 +72,9 @@
             </div>
         </div>
         <div class="row align-items-center">
-            <br><br><br><br>
-
-            <div class="row align-items-center">
+            <div class="row align-items-center col-sm-6" style="max-height: 50%">
                 <a href="questionBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">질문 게시판 최신글</a>
-                <table class="table table-striped ">
+                <table class="table table-striped " >
                     <thead>
                     <%-- TODO : 표 스타일 변경 --%>
                     <tr class="text-center">
@@ -120,9 +118,9 @@
                     </tbody>
                 </table>
                 <!-- TODO : 페이지 넘버 -->
+            </div>
 
-
-                <div class="row align-items-center">
+                <div class="row align-items-center col-sm-6" style="max-height: 50%">
                     <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
                     <table class="table table-striped ">
                         <thead>
@@ -162,7 +160,6 @@
                     </table>
                     <!-- TODO : 페이지 넘버 -->
                 </div>
-            </div>
         </div>
     </div>
     <br><br>
