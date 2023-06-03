@@ -70,7 +70,7 @@
       </div>
       <br>
       <br>
-      <form action="writeAction.jsp" method="post">
+      <form action="writeAction.jsp" method="post" enctype="multipart/form-data">
         <div class="col">
           <div class="choose_board">
                                 <span class="ps_box focus">
@@ -98,15 +98,8 @@
         </div>
         <br>
         <div class="form-group">
-          <div class="upload-box">
-            <div id="drop-file" class="drag-file">
-              <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">
-              <p class="message">이미지 드롭 가능</p>
-              <img src="" alt="미리보기 이미지" class="preview">
-            </div>
-          </div>
-          <label class="file-label" for="chooseFile">이미지 업로드</label>
-          <input class="file" id="post_img"
+          <label class="file-label">이미지 업로드</label>
+          <input class="file" id="post_img" name="fileName"
                  type="file"
                  onchange="dropFile.handleFiles(this.files)"
                  accept="image/png, image/jpeg, image/gif"

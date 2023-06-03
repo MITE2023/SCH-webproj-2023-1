@@ -50,9 +50,9 @@ public class PostDAO {
         return -1;
     }
 
-    public int write(Post post, int userNo) { // TODO : user NO 어떻게?
-        String SQL = "INSERT INTO post (post_category, post_title, post_code, post_context, user_no, post_date) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+    public int write(Post post, int userNo, int imgNo) { // TODO : user NO 어떻게?
+        String SQL = "INSERT INTO post (post_category, post_title, post_code, post_context, user_no, post_date, img_no) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, post.getPost_category()); // TODO : 카테고리 분류 1:질문 / 2:트렌드
@@ -61,6 +61,8 @@ public class PostDAO {
             pstmt.setString(4, post.getPost_context());
             pstmt.setInt(5, userNo);
             pstmt.setString(6, getDate());
+            System.out.println(imgNo);
+            pstmt.setInt(7, imgNo - 1);
             return pstmt.executeUpdate(); // TODO : 230530;1225; 업로드까지 구현
         } catch (Exception e) {
             e.printStackTrace();
