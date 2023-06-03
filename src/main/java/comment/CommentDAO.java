@@ -84,13 +84,12 @@ public class CommentDAO {
         return "";
     }
 
-    public ArrayList<Comment> getList(int commentNo, int postNo) {
-        String SQL = "SELECT * FROM comment WHERE comment_id = ? AND post_no = ? ORDER BY post_no DESC";
+    public ArrayList<Comment> getList(int postNo) {
+        String SQL = "SELECT * FROM comment WHERE post_no = ? ORDER BY comment_no DESC";
         ArrayList<Comment> list = new ArrayList<Comment>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, commentNo);
-            pstmt.setInt(2, postNo);
+            pstmt.setInt(1, postNo);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 Comment comment = new Comment();
@@ -100,12 +99,13 @@ public class CommentDAO {
                 comment.setLike_no(0);
                 comment.setUser_no(rs.getInt(5));
                 comment.setPost_no(rs.getInt(6));
-                comment.setComment_date(getDate());
+                comment.setComment_date(rs.getString(7));
                 list.add(comment);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(list.size());
         return list;
     }
 
@@ -122,11 +122,11 @@ public class CommentDAO {
         return -1;
     }
 
-    public Comment getComment(int commentNo) {
-        String SQL = "SELECT * FROM comment WHERE comment_no = ? ORDER BY comment_no DESC";
+    public Comment getComment(int postNo) {
+        String SQL = "SELECT * FROM comment WHERE post_no = ? ORDER BY comment_no DESC";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1,  commentNo);
+            pstmt.setInt(1,  postNo);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 Comment comment = new Comment();

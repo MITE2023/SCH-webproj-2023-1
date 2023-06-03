@@ -4,6 +4,9 @@
 <%@ page import="user.User" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="user.UserDAO" %>
+<%@ page import="comment.CommentDAO" %>
+<%@ page import="comment.Comment" %>
+<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -171,28 +174,40 @@
             <!-- TODO : Form 형식으로 받아와야 하고, 한 칸 뛰거나 오른쪽 정렬 혹은 입력창 우측에 작성 버튼을 추가.-->
             <a href="#" label class="comment_button" id="add_comment" style="align: right">+ 댓글 추가하기</a><br>
           </div>
+
+          <%
+            CommentDAO commentDAO = new CommentDAO();
+            ArrayList<Comment> commentList = commentDAO.getList(post.getPost_no());
+            for (int i = 0; i < commentList.size(); i++) {
+          %>
+          <div class="container">
+            <div class="row">
           <div class="card mb-4">
             <div class="card-body">
               <div class="blog-profile">
                 <div class="row">
                   <div class="col">
-                    <h5 id="comment_id">닉네임</h5>
+                    <h5 id="comment_id"><%= userDAO.getNicknameByNo(commentList.get(i).getUser_no())%></h5>
                   </div>
                   <div class="col" style="text-align: right;">
                     &nbsp;
-                    <a href="#" class="comment_button" id="comment_modify">수정</a>
-                    |
                     <a href="#" class="comment_button" id="comment_delete">삭제</a>
 
                   </div>
                 </div>
-                <p id="comment_day" style="font-size: small;">2023-06-03</p>
+                <p id="comment_day" style="font-size: small;"><%=commentList.get(i).getComment_date()%></p>
               </div>
               <div id="comment_content" class="blog-content">
-                <p>전능하신강재영이시여영원한빛으로절보호하소서강재영이시여제게이시련을헤쳐나갈수있는지혜를주시오항상당신만을따르겠나이다보잘것없는저에게기회를주시고살아가는의미를주시는강재영이시여헤아릴수없는당신의지혜</p>
+                <p><%=commentList.get(i).getComment_context()%></p>
               </div>
             </div>
           </div>
+          </div>
+          </div>
+        <%
+          }
+        %>
+
         </div>
       </div>
     </div>

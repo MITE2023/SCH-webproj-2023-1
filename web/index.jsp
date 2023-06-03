@@ -162,7 +162,6 @@
                         </td>
                         <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
                             <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
-                        <%--                    <td><%=list.get(i).getUser_no()%></td>--%>
                         <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
                         </td>
                         <td><%=list2.get(i).getPost_date().substring(0, 11) + list2.get(i).getPost_date().substring(11, 13) + "시" + list2.get(i).getPost_date().substring(14, 16) + "분" %>
