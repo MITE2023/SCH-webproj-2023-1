@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.Post" %>
-<%@ page import="post.PostDAO" %>
+<%@ page import="post.TrendPostDAO" %>
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -95,7 +95,7 @@
                 <tbody>
                 <tr>
                         <%
-                            PostDAO postDAO = new PostDAO();
+                            TrendPostDAO postDAO = new TrendPostDAO();
                             UserDAO userDAO = new UserDAO();
                             ArrayList<Post> list;
                             if(request.getParameter("searchTitle") == null) {
@@ -104,12 +104,11 @@
 
                             else list = postDAO.getTitleList(pageNumber, request.getParameter("searchTitle"));
                             for (int i = 0; i < list.size(); i++) {
-                                if (list.get(i).getPost_category().equals("1")) continue;
                         %>
                 <tr>
                     <td><%=list.get(i).getPost_no()%>
                     </td>
-                    <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
+                    <td><a href="viewContent.jsp?category=2&postNo=<%=list.get(i).getPost_no()%>" class="post_title">
                         <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                     </a></td>
                     <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>
@@ -153,7 +152,7 @@
             <%
                 int pages = (int) Math.ceil(postDAO.getNext() / 10) + 1;
                 for (int i = 1; i <= pages; i++) { %>
-            <button type="button" onclick="location.href='trendBoard.jsp?pageNumber=<%=i%>'"><%=i %>
+            <button type="button" onclick="location.href='trendBoard.jsp?category=2&pageNumber=<%=i%>'"><%=i %>
             </button>
             <%} %>
         </div>

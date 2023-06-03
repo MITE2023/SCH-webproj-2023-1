@@ -8,6 +8,7 @@
 <%@ page import="comment.Comment" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="img.ImgDAO" %>
+<%@ page import="post.TrendPostDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +32,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav" id="check_login">
                 <%
+                    UserDAO userDAO = new UserDAO();
                     int postNo = 0;
                     if (request.getParameter("postNo") != null) {
                         postNo = Integer.parseInt(request.getParameter("postNo"));
@@ -41,12 +43,20 @@
                         script.println("history.back()");    // 이전 페이지로 사용자를 보냄
                         script.println("</script>");
                     }
-                    Post post = new PostDAO().getPost(postNo);
+
+                    String category = request.getParameter("category");
+
+                    Post post = null;
+                    if (category.equals("1")) {
+                        post = new PostDAO().getPost(postNo);
+                    }
+                    else {
+                        post = new TrendPostDAO().getPost(postNo);
+                    }
+
                     if (post.getPost_code() == null) {
                         post.setPost_code("");
-                        // TODO : 트렌드 IT는 코드란 삭제
                     }
-                    UserDAO userDAO = new UserDAO();
 
                     if (session.getAttribute("userID") != null) {
                         String userID = (String) session.getAttribute("userID");
@@ -141,7 +151,7 @@
                                     </tr>
 
                                     <%
-                                        if (post.getPost_category().equals("1")) {
+                                        if (category.equals("1")) {
                                     %>
                                     <tr>
                                         <th class="active">코드</th>
