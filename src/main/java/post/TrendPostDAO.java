@@ -3,11 +3,11 @@ package post;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class PostDAO {
+public class TrendPostDAO {
     private Connection conn;
     private ResultSet rs;
 
-    public PostDAO() {
+    public TrendPostDAO() {
         try {
             String dbURL = "jdbc:mysql://localhost:3306/test";
             String dbID = "root";
@@ -36,7 +36,7 @@ public class PostDAO {
 
 
     public int getNext() {
-        String SQL = "SELECT post_no FROM post ORDER BY post_no DESC";
+        String SQL = "SELECT post_no FROM trend_post ORDER BY post_no DESC";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
@@ -51,7 +51,7 @@ public class PostDAO {
     }
 
     public int write(Post post, int userNo, int imgNo) { // TODO : user NO 어떻게?
-        String SQL = "INSERT INTO post (post_title, post_code, post_context, user_no, post_date, img_no) " +
+        String SQL = "INSERT INTO trend_post (post_title, post_code, post_context, user_no, post_date, img_no) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -69,7 +69,7 @@ public class PostDAO {
     }
 
     public ArrayList<Post> getList(int pageNumber) {
-        String SQL = "SELECT * FROM post WHERE post_no < ? ORDER BY post_no DESC LIMIT 10";
+        String SQL = "SELECT * FROM trend_post WHERE post_no < ? ORDER BY post_no DESC LIMIT 10";
         ArrayList<Post> list = new ArrayList<Post>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -94,8 +94,8 @@ public class PostDAO {
     }
 
     public ArrayList<Post> getTitleList(int pageNumber, String searchTitle) {
-        String SQL = "SELECT * FROM post WHERE post_no < ? AND post_title " +
-                    "LIKE '%" + searchTitle.trim() + "%' ORDER BY post_no DESC LIMIT 10";
+        String SQL = "SELECT * FROM trend_post WHERE post_no < ? AND post_title " +
+                "LIKE '%" + searchTitle.trim() + "%' ORDER BY post_no DESC LIMIT 10";
 
         ArrayList<Post> list = new ArrayList<Post>();
         try {
@@ -121,7 +121,7 @@ public class PostDAO {
     }
 
     public boolean nextPage(int pageNumber) {
-        String SQL = "SELECT * FROM post WHERE post_no < ?";
+        String SQL = "SELECT * FROM trend_post WHERE post_no < ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
@@ -136,7 +136,7 @@ public class PostDAO {
     }
 
     public Post getPost(int postNo) {
-        String SQL = "SELECT * FROM post WHERE post_no = ?";
+        String SQL = "SELECT * FROM trend_post WHERE post_no = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, postNo);

@@ -9,14 +9,9 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="img.Img" %>
 <%@ page import="img.ImgDAO" %>
-
+<%@ page import="post.TrendPostDAO" %>
+<%@ page import="post.Post" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-
-<jsp:useBean id="post" class="post.Post" scope="page"></jsp:useBean>
-<jsp:setProperty name="post" property="post_title"/>
-<jsp:setProperty name="post" property="post_context"/>
-<jsp:setProperty name="post" property="post_code"/>
-<jsp:setProperty name="post" property="post_category"/>
 
 <!DOCTYPE html>
 <html>
@@ -26,6 +21,9 @@
 </head>
 <body>
 <%
+    Post post = new Post();
+    UserDAO userDAO = new UserDAO();
+
     String folder = "/Users/jaeheon/Desktop/Dev/SCH-webproj-2023-1/web/UPLOAD";
     String encType = "utf-8";
     int maxSize = 5 * 1024 * 1024;
@@ -52,15 +50,9 @@
             script.println("alert('카테고리를 선택해주세요.')");
             script.println("history.back()");    // 이전 페이지로 사용자를 보냄
             script.println("</script>");
-
-        } else {
-            if (category_select.equals("질문 게시판"))
-                post.setPost_category("1");
-            else if (category_select.equals("트렌드 IT"))
-                post.setPost_category("2");
         }
 
-        UserDAO userDAO = new UserDAO();
+
         String userID = (String) session.getAttribute("userID");
 
 //        if (post.getPost_title() == null || post.getPost_context() == null) {
@@ -71,14 +63,20 @@
             script.println("history.back()");    // 이전 페이지로 사용자를 보냄
             script.println("</script>");
         } else {
-            PostDAO postDAO = new PostDAO();
             post.setPost_title(title);
             post.setPost_code(code);
             post.setPost_context(postContext);
-//            post.setImg_no(imgNo);
-//            post.setImg_no(); TODO : 이미지 설정
 
-            int result = postDAO.write(post, userDAO.getNoByUserId(userID), imgNo); // TODO : 수정 필요
+            int result = -1;
+            if (category_select.equals("질문 게시판")) {
+                PostDAO dao = new PostDAO();
+                result = dao.write(post, userDAO.getNoByUserId(userID), imgNo);
+            }
+            else if (category_select.equals("트렌드 IT")) {
+                TrendPostDAO dao = new TrendPostDAO();
+                result = dao.write(post, userDAO.getNoByUserId(userID), imgNo);
+            }
+
             PrintWriter script = response.getWriter();
             script.println("<script>");
             if (result == -1) { // 글쓰기 실패시

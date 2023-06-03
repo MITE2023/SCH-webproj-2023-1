@@ -4,6 +4,7 @@
 <%@ page import="post.PostDAO" %>
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="post.TrendPostDAO" %>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -99,12 +100,11 @@
                             UserDAO userDAO = new UserDAO();
                             ArrayList<Post> list = postDAO.getList(pageNumber);
                             for (int i = 0; i < list.size(); i++) {
-                                if (list.get(i).getPost_category().equals("2")) continue;
                         %>
                     <tr>
                         <td><%=list.get(i).getPost_no()%>
                         </td>
-                        <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
+                        <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>&category=1" class="post_title">
                             <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                         </a></td>
                         <%--                    <td><%=list.get(i).getUser_no()%></td>--%>
@@ -123,7 +123,7 @@
 
 
                 <div class="row align-items-center">
-                    <a href="trendBoard.jsp"  style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
+                    <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
                     <table class="table table-striped ">
                         <thead>
                         <%-- TODO : 표 스타일 변경 --%>
@@ -137,18 +137,17 @@
 
                         <tbody>
                         <tr>
-                                <%
-                            PostDAO postDAO2 = new PostDAO();
+                        <%
+                            TrendPostDAO trendPostDAO = new TrendPostDAO();
                             UserDAO userDAO2 = new UserDAO();
-                            ArrayList<Post> list2 = postDAO2.getList(pageNumber);
+                            ArrayList<Post> list2 = trendPostDAO.getList(pageNumber);
                             for (int i = 0; i < list2.size(); i++) {
-                              if(list2.get(i).getPost_category().equals("1")) continue;
                         %>
                         <tr>
                             <td><%=list2.get(i).getPost_no()%>
                             </td>
-                            <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>" class="post_title">
-                                <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
+                            <td><a href="viewContent.jsp?postNo=<%=list2.get(i).getPost_no()%>&category=2" class="post_title">
+                                <%=list2.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                             </a></td>
                             <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
                             </td>
