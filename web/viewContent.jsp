@@ -92,6 +92,7 @@
         <div class="col">
         </div>
         <div class="col">
+          <!-- TODO : 버튼 정렬 -->
           <button class="btn btn-outline-success w-25" type="submit">목록</button>
           <button class="btn btn-outline-success w-25" type="submit">수정</button>
           <button class="btn btn-outline-success w-25" type="submit">삭제</button>
@@ -127,12 +128,18 @@
                       <span id="content_title"><%=post.getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
                     </td>
                   </tr>
+
+                  <%
+                    if (post.getPost_category().equals("1")) {
+                  %>
                   <tr>
                     <th class="active" >코드</th>
                     <td>
                       <span id="content_code"><%= post.getPost_code().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
                     </td>
                   </tr>
+                  <% }%>
+
                   <tr>
                     <th class="active" >내용</th>
                     <td>
@@ -161,49 +168,28 @@
         <div class="card-body p-4">
           <div class="form-outline mb-4">
             <input type="text" id="write_comment" class="form-control" placeholder="댓글을 작성해주세요..." />
-            <a href="#" label class="form-label" id="submit_comment">+ 댓글 추가하기</a>
+            <!-- TODO : Form 형식으로 받아와야 하고, 한 칸 뛰거나 오른쪽 정렬 혹은 입력창 우측에 작성 버튼을 추가.-->
+            <a href="#" label class="comment_button" id="add_comment" style="align: right">+ 댓글 추가하기</a><br>
           </div>
-
           <div class="card mb-4">
             <div class="card-body">
-              <p id="comment_content">------------------댓글 내용 1-----------------</p>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                  <p class="small mb-0 ms-2" id="comment_id">아이디1</p>
-                </div>
-              </div>
-            </div>
-          </div>
+              <div class="blog-profile">
+                <div class="row">
+                  <div class="col">
+                    <h5 id="comment_id">닉네임</h5>
+                  </div>
+                  <div class="col" style="text-align: right;">
+                    &nbsp;
+                    <a href="#" class="comment_button" id="comment_modify">수정</a>
+                    |
+                    <a href="#" class="comment_button" id="comment_delete">삭제</a>
 
-          <div class="card mb-4">
-            <div class="card-body">
-              <p id="comment_content2">------------------댓글 내용 2-----------------</p>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                  <p class="small mb-0 ms-2" id="comment_id2">아이디2</p>
+                  </div>
                 </div>
+                <p id="comment_day" style="font-size: small;">2023-06-03</p>
               </div>
-            </div>
-          </div>
-
-          <div class="card mb-4">
-            <div class="card-body">
-              <p id="comment_content3">------------------댓글 내용 3-----------------</p>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                  <p class="small mb-0 ms-2" id="comment_id3">아이디3</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-              <p id="comment_content4">------------------댓글 내용 4-----------------</p>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                  <p class="small mb-0 ms-2" id="comment_id4">아이디4</p>
-                </div>
+              <div id="comment_content" class="blog-content">
+                <p>전능하신강재영이시여영원한빛으로절보호하소서강재영이시여제게이시련을헤쳐나갈수있는지혜를주시오항상당신만을따르겠나이다보잘것없는저에게기회를주시고살아가는의미를주시는강재영이시여헤아릴수없는당신의지혜</p>
               </div>
             </div>
           </div>
