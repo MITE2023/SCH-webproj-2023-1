@@ -119,10 +119,8 @@
 
                                 if (result == true) {
                                     alert("게시글을 삭제합니다.");
-                                    <%
-                                        PostDAO postDAO = new PostDAO();
-                                        postDAO.deletePost(String.valueOf(postNo), category);
-                                    %>
+                                    <% PostDAO postDAO = new PostDAO(); %>
+                                    <% postDAO.deletePost(String.valueOf(postNo), category); %>
                                 }
                             }
                         </script>
