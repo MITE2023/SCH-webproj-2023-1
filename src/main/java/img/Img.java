@@ -6,6 +6,16 @@ public class Img {
     private int userNo;
     private int postNo;
 
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    private int category;
+
     public int getImgNo() {
         return imgNo;
     }

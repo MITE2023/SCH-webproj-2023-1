@@ -112,8 +112,21 @@
                             String userId = (String) session.getAttribute("userID");
                             if (userId.equals(userDAO.getNicknameByNo(post.getUser_no()))) {
                     %>
-                    <form method="post" action="deleteAction.jsp">
-                        <button class="btn btn-outline-success w-25" type="submit">삭제</button>
+                    <form method="post" action="index.jsp">
+                        <script>
+                            function work() {
+                                var result = confirm("게시글을 삭제하시겠습니까?");
+
+                                if (result == true) {
+                                    alert("게시글을 삭제합니다.");
+                                    <%
+                                        PostDAO postDAO = new PostDAO();
+                                        postDAO.deletePost(String.valueOf(postNo), category);
+                                    %>
+                                }
+                            }
+                        </script>
+                        <button class="btn btn-outline-success w-25" type="submit" onclick="work()">삭제</button>
                     </form>
                     <% }
                     } %>
@@ -213,9 +226,7 @@
                                                 </h5>
                                             </div>
                                             <div class="col" style="text-align: right;">
-                                                &nbsp;
-                                                <a href="#" class="comment_button" id="comment_delete">삭제</a>
-
+                                                <a href="" class="comment_button" id="comment_delete">삭제</a>
                                             </div>
                                         </div>
                                         <p id="comment_day"

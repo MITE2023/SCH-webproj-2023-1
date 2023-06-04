@@ -44,7 +44,7 @@ public class PostDAO {
                 return rs.getInt(1) + 1;
             }
             return 1;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
@@ -95,7 +95,7 @@ public class PostDAO {
 
     public ArrayList<Post> getTitleList(int pageNumber, String searchTitle) {
         String SQL = "SELECT * FROM post WHERE post_no < ? AND post_title " +
-                    "LIKE '%" + searchTitle.trim() + "%' ORDER BY post_no DESC LIMIT 10";
+                "LIKE '%" + searchTitle.trim() + "%' ORDER BY post_no DESC LIMIT 10";
 
         ArrayList<Post> list = new ArrayList<Post>();
         try {
@@ -157,5 +157,20 @@ public class PostDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int deletePost(String post_no, String category) {
+        String SQL;
+        if (category.equals("1")) {
+            SQL = "DELETE FROM post WHERE post_no = ?";
+        } else SQL = "DELETE FROM trend_post WHERE post_no = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, post_no);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }
