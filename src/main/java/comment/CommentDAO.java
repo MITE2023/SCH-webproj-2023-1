@@ -105,7 +105,6 @@ public class CommentDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(list.size());
         return list;
     }
 

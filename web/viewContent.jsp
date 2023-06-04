@@ -88,17 +88,7 @@
 </nav>
 <section>
     <div class="container text-center">
-        <div class="row align-items-start">
-            <div class="row">
-                <div class="col">
-                </div>
-                <div class="col" id="Logo">
-                    <img class="logo" src="IMG/Logo.png" height="250">
-                </div>
-                <div class="col">
-                </div>
-            </div>
-        </div>
+       <br>
         <div class="row align-items-end">
             <div class="row">
                 <div class="col">
@@ -110,23 +100,14 @@
                     <%
                         if (session.getAttribute("userID") != null) {
                             String userId = (String) session.getAttribute("userID");
-                            if (userId.equals(userDAO.getNicknameByNo(post.getUser_no()))) {
-                    %>
-                    <form method="post" action="index.jsp">
-                        <script>
-                            function work() {
-                                var result = confirm("게시글을 삭제하시겠습니까?");
 
-                                if (result == true) {
-                                    alert("게시글을 삭제합니다.");
-                                    <%
-                                        PostDAO postDAO = new PostDAO();
-                                        postDAO.deletePost(String.valueOf(postNo), category);
-                                    %>
-                                }
-                            }
-                        </script>
-                        <button class="btn btn-outline-success w-25" type="submit" onclick="work()">삭제</button>
+                            if (userDAO.getNoByUserId(userId) == post.getUser_no()) {
+                                session.setAttribute("deletePostNo", String.valueOf(postNo));
+                                session.setAttribute("deleteCategory", category);
+
+                    %>
+                    <form method="get" action="deleteAction.jsp">
+                        <button class="btn btn-outline-dark w-15" type="submit">삭제</button>
                     </form>
                     <% }
                     } %>

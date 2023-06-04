@@ -39,7 +39,7 @@
     String postContext = multi.getParameter("post_context");
 
     ImgDAO imgDAO = new ImgDAO();
-    int imgNo = imgDAO.addImg("UPLOAD/" + fileName, (String) session.getAttribute("userID"));
+    int imgNo = imgDAO.addImg("UPLOAD/" + fileName, String.valueOf(userDAO.getNoByUserId((String)session.getAttribute("userID"))));
 
     if (session.getAttribute("userID") != null) {
         // category 설정

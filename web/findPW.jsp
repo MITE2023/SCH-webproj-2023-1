@@ -13,10 +13,6 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
-
-
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <!-- Favicons -->
@@ -29,22 +25,27 @@
     <meta name="theme-color" content="#712cf9">
 
     <!-- Custom styles for this template -->
-    <link href="login.css" rel="stylesheet">
+    <link href="CSS/login.css" rel="stylesheet">
+    <link href="CSS/signup.css" rel="stylesheet">
 </head>
 <body class="text-center">
 
 <main class="form-signin w-100 m-auto">
     <form>
+        <div class="col" id="Logo">
+            <img class="logo" src="IMG/Logo.png" height="250">
+        </div>
 
+        <br>
         <h1 class="h3 mb-3 fw-normal">비밀번호 찾기</h1>
 
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingName" placeholder="홍길동">
-            <label for="floatingName">Name</label>
+            <label for="floatingName">아이디</label>
         </div>
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <input type="userNickname" class="form-control" id="floatingNickname" placeholder="kjykjy">
+            <label for="floatingNickname">닉네임</label>
         </div>
 
 

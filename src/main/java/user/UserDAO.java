@@ -109,7 +109,6 @@ public class UserDAO {
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 int count = rs.getInt(1);
-                System.out.println(count);
                 if (count > 0) return 1; // id already exist
                 else return -1; // validation pass
             }

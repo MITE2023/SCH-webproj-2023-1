@@ -4,12 +4,17 @@
 
 <%
     PostDAO postDAO = new PostDAO();
-    String category = request.getParameter("category");
-    String postNo = request.getParameter("postNo");
-    postDAO.deletePost(postNo, category);
+    String postNo = (String) session.getAttribute("deletePostNo");
+    String category = (String) session.getAttribute("deleteCategory");
 %>
+
 <script>
-    alert('게시글이 삭제되었습니다.');
-    window.location.href('viewContent.jsp');
+    var result = confirm("게시글을 삭제하시겠습니까?");
+
+    if (result == true) {
+        alert('게시글을 삭제합니다.');
+        <%postDAO.deletePost(String.valueOf(postNo), category);%>
+        location.href = 'index.jsp';
+    }
 </script>
 

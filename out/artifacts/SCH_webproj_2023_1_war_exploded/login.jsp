@@ -33,11 +33,11 @@
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" id="userID" name="userID" placeholder="id">
-            <label for="userID">Id</label>
+            <label for="userID">아이디</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" id="userPW" name="userPW" placeholder="Password">
-            <label for="userPW">Password</label>
+            <label for="userPW">비밀번호</label>
         </div>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
