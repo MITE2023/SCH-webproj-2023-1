@@ -120,7 +120,7 @@
                 <!-- TODO : 페이지 넘버 -->
             </div>
 
-                <div class="row align-items-center col-sm-6" style="max-height: 50%">
+                <div class="row align-items-center col-sm-6">
                     <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
                     <table class="table table-striped ">
                         <thead>
