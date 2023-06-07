@@ -186,6 +186,9 @@
         <div class="col" style="margin-left: 7%; margin-right: 7%;">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                 <div class="card-body p-4">
+                    <%
+                        if (session.getAttribute("userID") != null) {
+                    %>
                     <div class="form-outline mb-4">
                         <form action="commentAction.jsp?postNo=<%=postNo%>&category=<%=category%>" method="post">
                             <input type="text" id="write_comment" name="write_comment" class="form-control"
@@ -195,6 +198,9 @@
                             </button>
                         </form>
                     </div>
+                    <%
+                        }
+                    %>
                     <br>
                     <%
                         CommentDAO commentDAO = new CommentDAO();

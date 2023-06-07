@@ -9,15 +9,14 @@
 
     String commentContext = request.getParameter("write_comment");
     String userName = (String) session.getAttribute("userID");
-    int userNo = userDAO.getNoByUserId(userName);
     String postNo = request.getParameter("postNo");
     String category = request.getParameter("category");
+    int userNo = userDAO.getNoByUserId(userName);
 
     commentDAO.write(commentContext, userNo, postNo);
 
 %>
 
 <script>
-    // history.back();
     location.href = "viewContent.jsp?postNo=<%=postNo%>&category=<%=category%>";
 </script>

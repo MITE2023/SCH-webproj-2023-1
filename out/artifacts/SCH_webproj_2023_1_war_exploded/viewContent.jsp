@@ -91,7 +91,8 @@
         <div class="row align-items-end">
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-outline-dark w-15" type="submit" style="float: right; position: sticky;">목록</button>
+                    <button class="btn btn-outline-dark w-15" type="submit" style="float: right; position: sticky;">목록
+                    </button>
                     <!-- TODO : 버튼 정렬 -->
                     <%
                         if (session.getAttribute("userID") != null) {
@@ -103,7 +104,9 @@
 
                     %>
                     <form method="get" action="deletePostAction.jsp">
-                        <button class="btn btn-outline-dark w-15" style="float: right; margin-right: 6px; position: sticky" type="submit">삭제</button>
+                        <button class="btn btn-outline-dark w-15"
+                                style="float: right; margin-right: 6px; position: sticky" type="submit">삭제
+                        </button>
                     </form>
                     <% }
                     } %>
@@ -183,6 +186,9 @@
         <div class="col" style="margin-left: 7%; margin-right: 7%;">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                 <div class="card-body p-4">
+                    <%
+                        if (session.getAttribute("userID") != null) {
+                    %>
                     <div class="form-outline mb-4">
                         <form action="commentAction.jsp?postNo=<%=postNo%>&category=<%=category%>" method="post">
                             <input type="text" id="write_comment" name="write_comment" class="form-control"
@@ -192,6 +198,9 @@
                             </button>
                         </form>
                     </div>
+                    <%
+                        }
+                    %>
                     <br>
                     <%
                         CommentDAO commentDAO = new CommentDAO();
@@ -217,11 +226,12 @@
                                                         session.setAttribute("deleteCategory", category);
 
                                             %>
-                                            <div class="col" style="text-align: right;">
-                                                <a href="deleteCommentAction.jsp?commentNo=<%=commentList.get(i).getComment_no()%>&postNo=<%=postNo%>&category=<%=category%>" class="comment_button" id="comment_delete">삭제</a>
-                                            </div>
+                                                    <div class="col" style="text-align: right;">
+                                                        <a href="deleteCommentAction.jsp?commentNo=<%=commentList.get(i).getComment_no()%>&postNo=<%=postNo%>&category=<%=category%>"
+                                                           class="comment_button" id="comment_delete">삭제</a>
+                                                    </div>
                                             <%
-                                                }
+                                                    }
                                                 }
                                             %>
                                         </div>
