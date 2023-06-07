@@ -91,7 +91,8 @@
         <div class="row align-items-end">
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-outline-dark w-15" type="submit" style="float: right; position: sticky;">목록</button>
+                    <button class="btn btn-outline-dark w-15" type="submit" style="float: right; position: sticky;">목록
+                    </button>
                     <!-- TODO : 버튼 정렬 -->
                     <%
                         if (session.getAttribute("userID") != null) {
@@ -102,8 +103,10 @@
                                 session.setAttribute("deleteCategory", category);
 
                     %>
-                    <form method="get" action="deleteAction.jsp">
-                        <button class="btn btn-outline-dark w-15" style="float: right; margin-right: 6px; position: sticky" type="submit">삭제</button>
+                    <form method="get" action="deletePostAction.jsp">
+                        <button class="btn btn-outline-dark w-15"
+                                style="float: right; margin-right: 6px; position: sticky" type="submit">삭제
+                        </button>
                     </form>
                     <% }
                     } %>
@@ -208,9 +211,23 @@
                                                 <h5 id="comment_id"><%= userDAO.getNicknameByNo(commentList.get(i).getUser_no())%>
                                                 </h5>
                                             </div>
-                                            <div class="col" style="text-align: right;">
-                                                <a href="" class="comment_button" id="comment_delete">삭제</a>
-                                            </div>
+                                            <%
+                                                if (session.getAttribute("userID") != null) {
+                                                    String userId = (String) session.getAttribute("userID");
+
+                                                    if (userDAO.getNoByUserId(userId) == commentList.get(i).getUser_no()) {
+                                                        session.setAttribute("deletePostNo", String.valueOf(postNo));
+                                                        session.setAttribute("deleteCategory", category);
+
+                                            %>
+                                                    <div class="col" style="text-align: right;">
+                                                        <a href="deleteCommentAction.jsp?commentNo=<%=commentList.get(i).getComment_no()%>&postNo=<%=postNo%>&category=<%=category%>"
+                                                           class="comment_button" id="comment_delete">삭제</a>
+                                                    </div>
+                                            <%
+                                                    }
+                                                }
+                                            %>
                                         </div>
                                         <p id="comment_day"
                                            style="font-size: small;"><%=commentList.get(i).getComment_date()%>

@@ -143,11 +143,11 @@ public class CommentDAO {
         return null;
     }
 
-    public int delete(int commentNo) {
+    public int delete(String commentNo) {
         String SQL = "DELETE FROM comment WHERE comment_no = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, commentNo);
+            pstmt.setString(1, commentNo);
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
