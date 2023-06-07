@@ -182,6 +182,9 @@
         </div>
     </div>
     </div>
+    <%
+        if (category.equals("1")) {
+    %>
     <div class="row d-flex justify-content-center">
         <div class="col" style="margin-left: 7%; margin-right: 7%;">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
@@ -255,6 +258,9 @@
             </div>
         </div>
     </div>
+    <%
+        }
+    %>
 </section>
 <script src="Trend_IT.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

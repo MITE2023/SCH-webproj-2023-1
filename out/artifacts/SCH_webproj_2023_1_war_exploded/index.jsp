@@ -74,10 +74,16 @@
         <div class="row align-items-center">
             <div class="row align-items-center col-sm-6" style="max-height: 50%">
                 <a href="questionBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">질문 게시판 최신글</a>
-                <table class="table table-striped " >
+                <table class="table table-striped" style="table-layout:fixed">
+                    <colgroup>
+                        <col width="12%" />
+                        <col width="47%" />
+                        <col width="17%" />
+                        <col width="22%" />
+                    </colgroup>
                     <thead>
                     <%-- TODO : 표 스타일 변경 --%>
-                    <tr class="text-center">
+                    <tr class="text-center"  style="position: sticky;">
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
@@ -120,46 +126,52 @@
                 <!-- TODO : 페이지 넘버 -->
             </div>
 
-                <div class="row align-items-center col-sm-6">
-                    <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
-                    <table class="table table-striped ">
-                        <thead>
-                        <%-- TODO : 표 스타일 변경 --%>
-                        <tr class="text-center">
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>등록일</th>
-                        </tr>
-                        </thead>
+            <div class="row align-items-center col-sm-6">
+                <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
+                <table class="table table-striped" style="table-layout:fixed">
+                    <colgroup>
+                        <col width="12%" />
+                        <col width="47%" />
+                        <col width="17%" />
+                        <col width="22%" />
+                    </colgroup>
+                    <thead>
+                    <%-- TODO : 표 스타일 변경 --%>
+                    <tr class="text-center"  style="position: sticky;">
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>등록일</th>
+                    </tr>
+                    </thead>
 
-                        <tbody>
-                        <tr>
-                        <%
+                    <tbody>
+                    <tr>
+                            <%
                             TrendPostDAO trendPostDAO = new TrendPostDAO();
                             UserDAO userDAO2 = new UserDAO();
                             ArrayList<Post> list2 = trendPostDAO.getList(pageNumber);
                             for (int i = 0; i < list2.size(); i++) {
                         %>
-                        <tr>
-                            <td><%=list2.get(i).getPost_no()%>
-                            </td>
-                            <td><a href="viewContent.jsp?postNo=<%=list2.get(i).getPost_no()%>&category=2" class="post_title">
-                                <%=list2.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
-                            </a></td>
-                            <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
-                            </td>
-                            <td><%=list2.get(i).getPost_date().substring(0, 11) + list2.get(i).getPost_date().substring(11, 13) + "시" + list2.get(i).getPost_date().substring(14, 16) + "분" %>
-                            </td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!-- TODO : 페이지 넘버 -->
-                </div>
+                    <tr>
+                        <td><%=list2.get(i).getPost_no()%>
+                        </td>
+                        <td><a href="viewContent.jsp?postNo=<%=list2.get(i).getPost_no()%>&category=2" class="post_title">
+                            <%=list2.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
+                        </a></td>
+                        <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
+                        </td>
+                        <td><%=list2.get(i).getPost_date().substring(0, 11) + list2.get(i).getPost_date().substring(11, 13) + "시" + list2.get(i).getPost_date().substring(14, 16) + "분" %>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tr>
+                    </tbody>
+                </table>
+                <!— TODO : 페이지 넘버 —>
+            </div>
         </div>
     </div>
     <br><br>
