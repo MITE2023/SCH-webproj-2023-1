@@ -49,8 +49,7 @@
                     Post post = null;
                     if (category.equals("1")) {
                         post = new PostDAO().getPost(postNo);
-                    }
-                    else {
+                    } else {
                         post = new TrendPostDAO().getPost(postNo);
                     }
 
@@ -88,14 +87,11 @@
 </nav>
 <section>
     <div class="container text-center">
-       <br>
+        <br>
         <div class="row align-items-end">
             <div class="row">
                 <div class="col">
-                </div>
-                <div class="col">
-                </div>
-                <div class="col">
+                    <button class="btn btn-outline-dark w-15" type="submit" style="float: right; position: sticky;">목록</button>
                     <!-- TODO : 버튼 정렬 -->
                     <%
                         if (session.getAttribute("userID") != null) {
@@ -107,90 +103,96 @@
 
                     %>
                     <form method="get" action="deleteAction.jsp">
-                        <button class="btn btn-outline-dark w-15" type="submit">삭제</button>
+                        <button class="btn btn-outline-dark w-15" style="float: right; margin-right: 6px; position: sticky" type="submit">삭제</button>
                     </form>
                     <% }
                     } %>
                 </div>
             </div>
         </div>
+    </div>
 
-        <br>
-        <div class="panel" style="margin-left:1px;">
-            <div id="contAreaBox">
-                <div class="panel">
-                    <div class="panel-body">
-                        <form role="form" action="/board/create_action" method="post">
-                            <div class="table-responsive" style="text-align:center;">
-                                <table id="datatable-scroller"
-                                       class="table table-bordered" style="border-color: black;">
-                                    <caption></caption>
-                                    <colgroup>
-                                        <col width="250px"/>
-                                        <col/>
-                                    </colgroup>
-                                    <tbody>
-                                    <tr>
-                                        <th class="active">작성자</th>
-                                        <td>
+    <br>
+    <div class="panel" style="margin-left: 7%; margin-right: 7%;">
+        <div id="contAreaBox">
+            <div class="panel">
+                <div class="panel-body">
+                    <form role="form" action="/board/create_action" method="post">
+                        <div class="table-responsive" style="text-align:center;">
+                            <table id="datatable-scroller"
+                                   class="table table-bordered" style="border-color: black;">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="250px"/>
+                                    <col/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th class="active">작성자</th>
+                                    <td>
                       <span id="content_id"><%=userDAO.getNicknameByNo(post.getUser_no())
                               .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %> </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="active">제목</th>
-                                        <td>
-                                            <span id="content_title"><%=post.getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="active">제목</th>
+                                    <td>
+                                        <span id="content_title"><%=post.getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
+                                    </td>
+                                </tr>
 
-                                    <%
-                                        if (category.equals("1")) {
-                                    %>
-                                    <tr>
-                                        <th class="active">코드</th>
-                                        <td>
-                                            <span id="content_code"><%= post.getPost_code().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
-                                        </td>
-                                    </tr>
-                                    <% }%>
+                                <%
+                                    if (category.equals("1")) {
+                                %>
+                                <tr>
+                                    <th class="active">코드</th>
+                                    <td>
+                                        <span id="content_code"><%= post.getPost_code().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
+                                    </td>
+                                </tr>
+                                <% }%>
 
-                                    <tr>
-                                        <th class="active">내용</th>
-                                        <td>
-                                            <span id="content_detail"><%=post.getPost_context().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="active">이미지 파일</th>
-                                        <td>
-                                            <%
-                                                ImgDAO imgDAO = new ImgDAO();
-                                                String imgUrl = imgDAO.getImgUrlByNo(post.getImg_no());
-                                            %>
-                                            <span id="content_image"><img src="<%=imgUrl%>" width="400" height="400"></span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <tr>
+                                    <th class="active">내용</th>
+                                    <td>
+                                        <span id="content_detail"><%=post.getPost_context().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="active">이미지 파일</th>
+                                    <td>
+                                        <%
+                                            ImgDAO imgDAO = new ImgDAO();
+                                            String imgUrl = imgDAO.getImgUrlByNo(post.getImg_no());
+                                        %>
+                                        <span id="content_image"><img src="<%=imgUrl%>" width="400"
+                                                                      height="400"></span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col" style="margin-left: 7%; margin-right: 7%;">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                 <div class="card-body p-4">
                     <div class="form-outline mb-4">
-                        <input type="text" id="write_comment" class="form-control" placeholder="댓글을 작성해주세요..."/>
-                        <!-- TODO : Form 형식으로 받아와야 하고, 한 칸 뛰거나 오른쪽 정렬 혹은 입력창 우측에 작성 버튼을 추가.-->
-                        <a href="#" label class="comment_button" id="add_comment" style="align: right">+ 댓글 추가하기</a><br>
+                        <form action="commentAction.jsp?postNo=<%=postNo%>&category=<%=category%>" method="post">
+                            <input type="text" id="write_comment" name="write_comment" class="form-control"
+                                   placeholder="댓글을 작성해주세요..."/>
+                            <button label class="btn btn-outline w-15" id="add_comment" type="submit"
+                                    style="float: right;">+ 댓글 추가하기
+                            </button>
+                        </form>
                     </div>
-
+                    <br>
                     <%
                         CommentDAO commentDAO = new CommentDAO();
                         ArrayList<Comment> commentList = commentDAO.getList(post.getPost_no());
