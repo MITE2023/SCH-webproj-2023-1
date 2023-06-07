@@ -2,7 +2,8 @@
 
 <!doctype html>
 <html lang="kr" data-bs-theme="auto">
-<head><script src="/docs/5.3/assets/js/color-modes.js"></script>
+<head>
+    <script src="/docs/5.3/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +14,8 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -31,36 +33,28 @@
 <body class="text-center">
 
 <main class="form-signin w-100 m-auto">
-    <form>
         <div class="col" id="Logo">
             <img class="logo" src="IMG/Logo.png" height="250">
         </div>
-
         <br>
         <h1 class="h3 mb-3 fw-normal">비밀번호 찾기</h1>
 
+    <form method="post" action="findPWAction.jsp">
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" placeholder="홍길동">
-            <label for="floatingName">아이디</label>
+            <input type="text" class="form-control" name="userId" id="userId" placeholder="아이디">
+            <label for="userId">아이디</label>
         </div>
         <div class="form-floating">
-            <input type="userNickname" class="form-control" id="floatingNickname" placeholder="kjykjy">
-            <label for="floatingNickname">닉네임</label>
+            <input type="text" class="form-control" name="userNickname" id="userNickname" placeholder="닉네임">
+            <label for="userNickname">닉네임</label>
         </div>
-
-
         <button class="w-100 btn btn-lg btn-primary" type="submit">비밀번호 찾기</button>
-        <!-- <button class="btn" type="submit">회원가입</button>
-        <button class="btn" type="submit">아이디 찾기</button>
-        <button class="btn" type="submit">비밀번호 찾기</button> -->
-        <div class="links">
-
-            <a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a>
-
-        </div>
     </form>
-</main>
 
+    <div class="links">
+        <a href="login.jsp">로그인</a> | <a href="signup.jsp">회원가입</a>
+    </div>
+</main>
 
 
 </body>
