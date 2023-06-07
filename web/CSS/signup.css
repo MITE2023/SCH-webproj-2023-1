@@ -1,4 +1,8 @@
-.bg-light{
+body {
+    background-color: #efefef;
+}
+
+.bg{
     height: 1053px;
     padding-top: 55px;
     padding-bottom: 75px;

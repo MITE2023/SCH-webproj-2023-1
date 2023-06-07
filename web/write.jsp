@@ -65,9 +65,6 @@
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="col">
-        <button class="btn btn-outline-success" type="submit" onClick="location.href='writeAction.jsp'" style="float: right;">작성완료</button>
-      </div>
       <br>
       <br>
       <form action="writeAction.jsp" method="post" enctype="multipart/form-data">

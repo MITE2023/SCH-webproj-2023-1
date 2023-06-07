@@ -24,6 +24,5 @@
     <main>
         <h1><%=userNickname%>님의 비밀번호는 <%=password%> 입니다.</h1>
         <h2>보안에 유의하세요.</h2>
-        <%=userId%>
     </main>
 </html>

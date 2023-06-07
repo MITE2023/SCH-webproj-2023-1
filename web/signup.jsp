@@ -9,10 +9,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link href="CSS/signup.css" rel="stylesheet">
 </head>
-<body>
-<section class="bg-light">
+<body style="background-color: #efefef;">
+<section class="bg">
   <div class="container py-4">
     <div class="row align-items-center justify-content-between">
+      <div class="col" id="Logo" style="text-align: center;">
+        <img class="logo" src="IMG/Logo.png" height="250">
+      </div>
+      <br>
       <a class="navbar-brand h1 text-center" href="index.do">
         <span class="text-dark h4">회원가입</span>
       </a>
