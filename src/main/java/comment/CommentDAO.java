@@ -39,7 +39,7 @@ public class CommentDAO {
     }
 
     public int getNext() {
-        String SQL = "SELECT comment_id FROM comment ORDER BY comment_id DESC";
+        String SQL = "SELECT comment_no FROM comment ORDER BY comment_no DESC";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
@@ -52,15 +52,14 @@ public class CommentDAO {
         return 1;
     }
 
-    public int write(String commentContext, int imgNo, int userNo, int postNo) {
-        String SQL = "INSERT INTO comment (comment_context, img_no, user_no, post_no, comment_date) VALUES(?, ?, ?, ?, ?)";
+    public int write(String commentContext, int userNo, String postNo) {
+        String SQL = "INSERT INTO comment (comment_context, user_no, post_no, comment_date) VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, commentContext);
-            pstmt.setInt(2, imgNo);
-            pstmt.setInt(3, userNo);
-            pstmt.setInt(4, postNo);
-            pstmt.setString(5, getDate());
+            pstmt.setInt(2, userNo);
+            pstmt.setString(3, postNo);
+            pstmt.setString(4, getDate());
             pstmt.executeUpdate();
             return getNext();
         }catch(Exception e) {
