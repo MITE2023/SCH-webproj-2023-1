@@ -34,10 +34,7 @@
 
 <main class="form-signin w-100 m-auto">
         <div class="col" id="Logo">
-            <img class="logo" src="IMG/Logo.png" height="250">
-        </div>
-        <br>
-        <h1 class="h3 mb-3 fw-normal">비밀번호 찾기</h1>
+            <a href="index.jsp"><img class="logo" src="IMG/Logo.png" height="250"></a>        </div>
 
     <form method="post" action="findPWAction.jsp">
         <div class="form-floating">

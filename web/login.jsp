@@ -4,7 +4,7 @@
 <html lang="en" data-bs-theme="auto">
 <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
     <meta charset="utf-8">
-    <title>Signin Template · Bootstrap v5.3</title>
+    <title>로그인</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
@@ -29,8 +29,7 @@
 
         <!-- <h1 class="h3 mb-3 fw-normal">로그인</h1> -->
         <div class="col" id="Logo">
-            <img class="logo" src="IMG/Logo.png" height="250">
-        </div>
+            <a href="index.jsp"><img class="logo" src="IMG/Logo.png" height="250"></a>        </div>
         <div class="form-floating">
             <input type="text" class="form-control" id="userID" name="userID" placeholder="id">
             <label for="userID">아이디</label>

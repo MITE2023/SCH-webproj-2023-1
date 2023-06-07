@@ -14,12 +14,7 @@
   <div class="container py-4">
     <div class="row align-items-center justify-content-between">
       <div class="col" id="Logo" style="text-align: center;">
-        <img class="logo" src="IMG/Logo.png" height="250">
-      </div>
-      <br>
-      <a class="navbar-brand h1 text-center" href="index.do">
-        <span class="text-dark h4">회원가입</span>
-      </a>
+        <a href="index.jsp"><img class="logo" src="IMG/Logo.png" height="250"></a>      </div></a>
     </div>
     <form method="post" action="signupAction.jsp">
       <div class="form-group">
