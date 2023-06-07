@@ -91,8 +91,19 @@
         <div class="row align-items-end">
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-outline-dark w-15" type="submit" style="float: right; position: sticky;">목록
-                    </button>
+                    <%
+                        if (category.equals("1")) {
+                    %>
+                    <button class="btn btn-outline-dark w-15" onclick="location.href='questionBoard.jsp'" style = "float: right; position: sticky;" > 목록 </button >
+                    <%
+                        }
+                        else if (category.equals("2")) {
+                    %>
+                    <button class="btn btn-outline-dark w-15" onclick="location.href='trendBoard.jsp'" style = "float: right; position: sticky;" > 목록 </button >
+                    <%
+                        }
+                    %>
+
                     <!-- TODO : 버튼 정렬 -->
                     <%
                         if (session.getAttribute("userID") != null) {
