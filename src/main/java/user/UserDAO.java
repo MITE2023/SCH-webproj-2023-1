@@ -73,6 +73,21 @@ public class UserDAO {
         return -2; // DB error
     }
 
+    public String findPw(String userID, String userNickname) {
+        String SQL = "SELECT user_pw FROM user WHERE user_id = ? AND user_nickname = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            pstmt.setString(2, userNickname);
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public int register(User user) {
         // -1 : DB , -2 : ID, -3 : PW, -4 : Nickname
         if (idValidation(user.getUserID()) == 1) {

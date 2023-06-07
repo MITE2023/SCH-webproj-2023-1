@@ -15,7 +15,7 @@
     <title>SMARTALGO - 트렌드 IT 게시판</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link href="CSS/Mainpage.css" rel="stylesheet">
+    <link href="CSS/mainPage.css" rel="stylesheet">
 </head>
 <body style="background-color: #efefef;">
 
@@ -81,7 +81,13 @@
 
         <div class="row align-items-center">
             <p style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판</p>
-            <table class="table table-striped ">
+            <table class="table table-striped" style="table-layout: fixed;">
+                <colgroup>
+                    <col width="12%"/>
+                    <col width="47%"/>
+                    <col width="17%"/>
+                    <col width="22%"/>
+                </colgroup>
                 <thead>
                 <%-- TODO : 표 스타일 변경 --%>
                 <tr class="text-center">
@@ -108,7 +114,7 @@
                 <tr>
                     <td><%=list.get(i).getPost_no()%>
                     </td>
-                    <td><a href="viewContent.jsp?category=2&postNo=<%=list.get(i).getPost_no()%>" style="color:inherit; text-decoration: none;" class="post_title">
+                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none;" ><a href="viewContent.jsp?category=2&postNo=<%=list.get(i).getPost_no()%>" class="post_title">
                         <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                     </a></td>
                     <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>

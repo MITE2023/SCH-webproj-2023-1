@@ -111,7 +111,6 @@
                         <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none;"><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>&category=1" class="post_title">
                             <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                         </a></td>
-                        <%--                    <td><%=list.get(i).getUser_no()%></td>--%>
                         <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>
                         </td>
                         <td><%=list.get(i).getPost_date().substring(0, 11)%>
