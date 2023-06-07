@@ -76,14 +76,14 @@
                 <a href="questionBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">질문 게시판 최신글</a>
                 <table class="table table-striped" style="table-layout:fixed">
                     <colgroup>
-                        <col width="12%" />
-                        <col width="47%" />
-                        <col width="17%" />
-                        <col width="22%" />
+                        <col width="12%"/>
+                        <col width="47%"/>
+                        <col width="17%"/>
+                        <col width="22%"/>
                     </colgroup>
                     <thead>
                     <%-- TODO : 표 스타일 변경 --%>
-                    <tr class="text-center"  style="position: sticky;">
+                    <tr class="text-center" style="position: sticky;">
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
@@ -108,13 +108,13 @@
                     <tr>
                         <td><%=list.get(i).getPost_no()%>
                         </td>
-                        <td><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>&category=1" class="post_title">
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none;"><a href="viewContent.jsp?postNo=<%=list.get(i).getPost_no()%>&category=1" class="post_title">
                             <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                         </a></td>
                         <%--                    <td><%=list.get(i).getUser_no()%></td>--%>
                         <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>
                         </td>
-                        <td><%=list.get(i).getPost_date().substring(0, 11) + list.get(i).getPost_date().substring(11, 13) + "시" + list.get(i).getPost_date().substring(14, 16) + "분" %>
+                        <td><%=list.get(i).getPost_date().substring(0, 11)%>
                         </td>
                     </tr>
                     <%
@@ -126,18 +126,18 @@
                 <!-- TODO : 페이지 넘버 -->
             </div>
 
-            <div class="row align-items-center col-sm-6">
+            <div class="row align-items-center col-sm-6" style="margin:10px;">
                 <a href="trendBoard.jsp" style="background-color: #dee2e6; font-size: 20px;">트렌드 IT 게시판 최신글</a>
                 <table class="table table-striped" style="table-layout:fixed">
                     <colgroup>
-                        <col width="12%" />
-                        <col width="47%" />
-                        <col width="17%" />
-                        <col width="22%" />
+                        <col width="12%"/>
+                        <col width="47%"/>
+                        <col width="17%"/>
+                        <col width="22%"/>
                     </colgroup>
                     <thead>
                     <%-- TODO : 표 스타일 변경 --%>
-                    <tr class="text-center"  style="position: sticky;">
+                    <tr class="text-center" style="position: sticky;">
                         <th>번호</th>
                         <th>제목</th>
                         <th>작성자</th>
@@ -156,12 +156,13 @@
                     <tr>
                         <td><%=list2.get(i).getPost_no()%>
                         </td>
-                        <td><a href="viewContent.jsp?postNo=<%=list2.get(i).getPost_no()%>&category=2" class="post_title">
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none;"><a href="viewContent.jsp?postNo=<%=list2.get(i).getPost_no()%>&category=2"
+                               class="post_title">
                             <%=list2.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                         </a></td>
                         <td><%=userDAO2.getNicknameByNo(list2.get(i).getUser_no())%>
                         </td>
-                        <td><%=list2.get(i).getPost_date().substring(0, 11) + list2.get(i).getPost_date().substring(11, 13) + "시" + list2.get(i).getPost_date().substring(14, 16) + "분" %>
+                        <td><%=list2.get(i).getPost_date().substring(0, 11)%>
                         </td>
                     </tr>
                     <%

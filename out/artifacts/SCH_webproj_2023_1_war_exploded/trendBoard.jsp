@@ -108,7 +108,7 @@
                 <tr>
                     <td><%=list.get(i).getPost_no()%>
                     </td>
-                    <td><a href="viewContent.jsp?category=2&postNo=<%=list.get(i).getPost_no()%>" class="post_title">
+                    <td><a href="viewContent.jsp?category=2&postNo=<%=list.get(i).getPost_no()%>" style="color:inherit; text-decoration: none;" class="post_title">
                         <%=list.get(i).getPost_title().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%>
                     </a></td>
                     <td><%=userDAO.getNicknameByNo(list.get(i).getUser_no())%>
